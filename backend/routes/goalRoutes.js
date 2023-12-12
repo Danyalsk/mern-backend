@@ -9,13 +9,15 @@ const {
 
 // router.route("/").get(getGoals).post(setGoals);
 // router.route("/:d").put(updateGoals).delete(deleteGoals);
+ 
+const { protect } = require("../middleware/authMiddleware");
 
-router.get("/", getGoals);
 
-router.post("/", setGoals);
+router.get("/", protect, getGoals);
+router.post("/", protect , setGoals);
 
-router.put("/:id", updateGoals);
+router.put("/:id", protect , updateGoals);
 
-router.delete("/:id", deleteGoals);
+router.delete("/:id", protect , deleteGoals);
 
 module.exports = router;
